@@ -947,6 +947,11 @@ def main():
         except EOFError:
             pass
 
-
+# ============================================================
+# WRAPPER for app.py pipeline
+# ============================================================
+def advanced_humanize(text, level="medium"):
+    """Wrapper so app.py can import it as the advanced pass."""
+    return humanize(text, level=level)
 if __name__ == "__main__":
     main()
