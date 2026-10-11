@@ -497,6 +497,7 @@ PROTECTED = [
     r"\b[A-Z][a-z]+ [A-Z][a-z]+\b",
     r"\b\d{4}\b",
     r"\b[A-Z]{2,}\b",
+    r"__P\d+__",
 ]
 
 
