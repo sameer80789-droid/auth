@@ -626,14 +626,15 @@ def do_humanize():
     data = request.get_json()
     text = data.get("text", "")
 
-    # PASS 1: base humanizer (word swaps, contractions, splitting)
+    # Pass 1
+    from humanize import humanize
     stage1 = humanize(text)
 
-    # PASS 2: advanced humanizer (clichés, rhythm, redundancy)
+    # Pass 2
+    from advanced_humanize import advanced_humanize
     stage2 = advanced_humanize(stage1)
 
     return jsonify({"result": stage2})
-
 
 if __name__ == "__main__":
     print("=" * 50)
