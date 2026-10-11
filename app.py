@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template_string, session, redirect, url_for
-from humanize import humanize  # imports from your humanize.py
+from humanize import humanize
+from advanced_humanize import advanced_humanize
 import os
 
 app = Flask(__name__)
@@ -624,8 +625,14 @@ def do_humanize():
         return jsonify({"error": "unauthorized"}), 401
     data = request.get_json()
     text = data.get("text", "")
-    result = humanize(text)
-    return jsonify({"result": result})
+
+    # PASS 1: base humanizer (word swaps, contractions, splitting)
+    stage1 = humanize(text)
+
+    # PASS 2: advanced humanizer (clichés, rhythm, redundancy)
+    stage2 = advanced_humanize(stage1)
+
+    return jsonify({"result": stage2})
 
 
 if __name__ == "__main__":
